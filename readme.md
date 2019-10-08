@@ -1,8 +1,8 @@
-# A Simple Node Server
+# A Simple Node API
 
-### Create a Simple Node API Server (with a minimal frontend)
+### Create a Simple Node API Server (no frontend, instead use POSTman)
 
-##### Create the basics
+##### Create the API
   * Create a new directory.
     * `mkdir <DirName>`
   * Enter new directory.
@@ -231,5 +231,12 @@
     }
     module.exports = errorWrapper;
     ```
-  *
-  *
+  * Add and Commit the changes to git.
+    * `git add .`
+    * `git commit -m "Initial commit."`
+  * Create a github repo & push up.
+    * `git remote add origin <repoLink>`
+    * `git push -u origin master`
+
+##### Setup Digital Ocean:
+  * 
