@@ -252,26 +252,8 @@
       * Authentication: `Create SSH Key` (Follow the Steps).
         * Identification File: `simple`
         * Public Key File: `simple.pub`
-        * Public Key:
-        ```
-        ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCYbfFOr1hbnOuvhKlJfXoE43ct2v/ZUUReXehZ/XjuYWt0BRZ0/3B4/JeQiZ9OnuENlyD0sx0AoxzVXojND7bZwaNw83uh0O/n2DvkWxE7LD2LEvSi/oE4Ozm6hmnQtEoNaK1DYSU81KzfTA0c7SwUukU4yoHuyKVwQRNZZ7xr0Jca5KCObO41iL7fvQlKgDuzzriNHR4/IvB9e4qw2BD4IOcOKZjnpTSrv2OQgL4DQssZ0oc9nCt4lc6VyK2a6wyo531fllfwgsbU+zm4JTWrQ2cS+Ljw4Ok0awvIzmEqBbbJyGw6Ek2Ap7C/WbW7z5qRD4MgASU3NjEoG7p/GDET blaineanderson@BlainesMiniMac
-        ```
-        * Passphrase: `Simple321`
-        * Fingerprint: `SHA256:FWROgt9yZf8Cczlc4FW7cet07W1xGaUuSzm7bPUytJk blaineanderson@BlainesMiniMac`
-        * Random Image:
-        ```
-        +---[RSA 2048]----+
-        |       ...=   ..=|
-        |      .  = .o. o+|
-        |       . .oo oo*.|
-        |        o.o oo* O|
-        |        So  =+.O+|
-        |           . =*.*|
-        |            oo B+|
-        |           ...E..|
-        |           .o  o |
-        +----[SHA256]-----+
-        ```
+        * Public Key: Just copy the ENTIRE `simple.pub`.
+        * Passphrase: Dont forget this.
       * Amount of Droplets: `1`
       * Droplet Hostname: `simple-001`
       * Selected Project: `Simple` (The one we just created)
@@ -305,7 +287,9 @@
     * `git clone <githubRepo>`
   * Enter the newly created repo:
     * `cd <repoName>`
-  *
-    * ``
-  *
-    * ``
+  * Install everything using NPM (Mine produces an error but works perfectly)
+    * `npm install`
+    * Error to ignore: `npm ERR! enoent ENOENT: no such file or directory, chmod '/root/Simple/node_modules/node/bin/node'`
+  * Start the API
+    * `npm start`
+  * Test the API using postman. And success!
