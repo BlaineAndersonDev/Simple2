@@ -1,8 +1,7 @@
 # A Simple Node API
+##### Create a Simple Node API Server (no frontend, instead use POSTman)
 
-### Create a Simple Node API Server (no frontend, instead use POSTman)
-
-##### Create the API
+### Create the API
   * Create a new directory.
     * `mkdir <DirName>`
   * Enter new directory.
@@ -238,5 +237,5 @@
     * `git remote add origin <repoLink>`
     * `git push -u origin master`
 
-##### Setup Digital Ocean:
-  * 
+### Setup Digital Ocean:
+  *
