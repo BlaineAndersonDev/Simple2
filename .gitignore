@@ -4,3 +4,7 @@ yarn.lock
 
 # dotenv environment variables file
 .env
+
+# SSH Keys
+simple
+simple.pub
