@@ -162,7 +162,7 @@
     * Copy and paste the following into .gitignore:
     ```
     # Dependency directories
-    node_modules
+    node_modules/
     yarn.lock
 
     # dotenv environment variables file
@@ -171,6 +171,9 @@
     # SSH Keys
     simple
     simple.pub
+
+    # Other
+    .DS_Store
     ```
   * Install Express.
     * `yarn add express`

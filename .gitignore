@@ -1,5 +1,5 @@
 # Dependency directories
-node_modules
+node_modules/
 yarn.lock
 
 # dotenv environment variables file
@@ -8,3 +8,6 @@ yarn.lock
 # SSH Keys
 simple
 simple.pub
+
+# Other
+.DS_Store
