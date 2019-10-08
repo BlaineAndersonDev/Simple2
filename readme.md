@@ -2,7 +2,7 @@
 ##### Create a Simple Node API
   > This API is setup to use RESTful routing to manipulate a static object. It includes only the API (no frontend) and must be manipulated using calls (I.E. Postman). It is meant to be used when creating/learning cloud based hosting techniques.
 
-### Create the API
+## Create the API
   * Create a new directory.
     * `mkdir <DirName>`
   * Enter new directory.
@@ -238,5 +238,74 @@
     * `git remote add origin <repoLink>`
     * `git push -u origin master`
 
-### Setup Digital Ocean:
+## Setup Digital Ocean:
+  * Create a Digital Ocean Account.
+    * `https://www.digitalocean.com/`
+  * Create a Project
+    * For this I used the name "Simple"
+  * Create a Droplet (Cloud Server) in the project (For the purposes of these notes, I have elected to add ALL dependencies manually).
+    * These are the options I chose to use:
+      * Image (Distribution / OS): `Ubuntu 18.04.3 (LTS) x64`
+      * Plan: `Standard, $5 mo` (Plan is technically free for 600 hours).`
+      * Datacenter: `San Francisco [2]`
+      * Additional Options: `Monitoring`
+      * Authentication: `Create SSH Key` (Follow the Steps).
+        * Identification File: `simple`
+        * Public Key File: `simple.pub`
+        * Public Key:
+        ```
+        ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCYbfFOr1hbnOuvhKlJfXoE43ct2v/ZUUReXehZ/XjuYWt0BRZ0/3B4/JeQiZ9OnuENlyD0sx0AoxzVXojND7bZwaNw83uh0O/n2DvkWxE7LD2LEvSi/oE4Ozm6hmnQtEoNaK1DYSU81KzfTA0c7SwUukU4yoHuyKVwQRNZZ7xr0Jca5KCObO41iL7fvQlKgDuzzriNHR4/IvB9e4qw2BD4IOcOKZjnpTSrv2OQgL4DQssZ0oc9nCt4lc6VyK2a6wyo531fllfwgsbU+zm4JTWrQ2cS+Ljw4Ok0awvIzmEqBbbJyGw6Ek2Ap7C/WbW7z5qRD4MgASU3NjEoG7p/GDET blaineanderson@BlainesMiniMac
+        ```
+        * Passphrase: `Simple321`
+        * Fingerprint: `SHA256:FWROgt9yZf8Cczlc4FW7cet07W1xGaUuSzm7bPUytJk blaineanderson@BlainesMiniMac`
+        * Random Image:
+        ```
+        +---[RSA 2048]----+
+        |       ...=   ..=|
+        |      .  = .o. o+|
+        |       . .oo oo*.|
+        |        o.o oo* O|
+        |        So  =+.O+|
+        |           . =*.*|
+        |            oo B+|
+        |           ...E..|
+        |           .o  o |
+        +----[SHA256]-----+
+        ```
+      * Amount of Droplets: `1`
+      * Droplet Hostname: `simple-001`
+      * Selected Project: `Simple` (The one we just created)
+  * Login from your local terminal:
+    * `ssh root@<dropletIP>`
+  * Accept the query: "Are you sure you want to continue connecting (yes/no)?"
+    * `Are you sure you want to continue connecting (yes/no)?`
+  * Now that you have accepted the query, use the ssh login one more time:
+    * `ssh root@<dropletIP>`
+    * [Optional] If you use `ssh root@<dropletIP>` and it returns "root@<dropletIP>: Permission denied (publickey)." then you have multiple SSH keys on your local system. To specify the key in the command line use:
+      * `ssh -i <pathToSSHKey> <user/root>@<dropletIP>`
+      * This will prompt you for your SSH passphrase. Enter that and you should have access.
+
+## Combining our API with our Digital Ocean Droplet (cloud server)
+  * At this point, you'll need to add in the basics (NPM OR Yarn)
+    * NPM: Npm is easily installed using a native command provided by Digital Ocean
+    * NPM (current) command:
+    ```
+    apt install npm
+    ```
+    * Yarn: https://yarnpkg.com/lang/en/docs/install/#debian-stable
+    * Yarn (current) commands in order:
+    ```
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    ```
+    ```
+    sudo apt-get update && sudo apt-get install yarn
+    ```
+  * In the root directory of your droplet, clone your github repo:
+    * `git clone <githubRepo>`
+  * Enter the newly created repo:
+    * `cd <repoName>`
   *
+    * ``
+  *
+    * ``
