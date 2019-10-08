@@ -41,6 +41,22 @@ app.use(helmet())
 app.use('/api/object/examples', require('./controllers/exampleObjectController.js'));
 
 // =====================================
+// Retrieve the local IP ===============
+// =====================================
+var os = require('os');
+
+var interfaces = os.networkInterfaces();
+var addresses = [];
+for (var k in interfaces) {
+    for (var k2 in interfaces[k]) {
+        var address = interfaces[k][k2];
+        if (address.family === 'IPv4' && !address.internal) {
+            addresses.push(address.address);
+        }
+    }
+}
+
+// =====================================
 // Error Handling ======================
 // =====================================
 // Gets called because of `errorWrapper.js` in the controllers directory.
@@ -86,7 +102,17 @@ app.use(function(err, req, res, next) {
 // =====================================
 // Final Steps =========================
 // =====================================
-// Tells the app what port to listen on and the NODE_ENV. Upon listening it will display a console log. Upon close it will close and exit the server process.
-app.listen(port, () => console.log('Listening on port ' + port + ' | NODE_ENV: ' + process.env.NODE_ENV));
+// Display to show the Node Enviornment, POSTman test route, and inform the developer what port the API is listening on.
+console.log('===============================')
+console.log('API successfully loaded.')
+console.log(`NODE_ENV: ${process.env.NODE_ENV}`)
+console.log('Test functionality with POSTman using the following route:')
+console.log(`      ${addresses[0]}:5000/api/object/examples`)
+console.log(`Listening on port: ${port}`)
+console.log('===============================')
+
+// Sets the API to listen for calls.
+app.listen(port);
+
 // Exports the `app` to be used elsewhere in the project.
 module.exports = app
