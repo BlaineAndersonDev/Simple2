@@ -1,5 +1,6 @@
 # A Simple Node API
-##### Create a Simple Node API Server (no frontend, instead use POSTman)
+##### Create a Simple Node API
+  > This API is setup to use RESTful routing to manipulate a static object. It includes only the API (no frontend) and must be manipulated using calls (I.E. Postman). It is meant to be used when creating/learning cloud based hosting techniques.
 
 ### Create the API
   * Create a new directory.
