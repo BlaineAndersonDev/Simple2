@@ -328,3 +328,17 @@
   * Start the API
     * `npm start`
   * Test the API using postman. And success!
+
+## Setting up an actual Database:
+  *
+    * ``
+  *
+    * ``
+  *
+    * ``
+  *
+    * ``
+  *
+    * ``
+  *
+    * ``
