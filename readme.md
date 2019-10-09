@@ -372,20 +372,99 @@
 
     };
     ```
-  * Add our database "activation" into our server.js
-    * ``
+  * Add our database "activation" into our server.js (Just under the Router Setup)
+    ```
+    // =====================================
+    // Database Setup ======================
+    // =====================================
+    // Activates our database detection and creation in db.js.
+    const database = require('./db/Database.js');
+    ```
+  * Create our Database.js file in the db directory:
+    * `touch db/Database.js`
     * Copy and paste the following into knexfile.js in your local root directory:
     ```
+    const config = require('../knexfile.js');
+    const database = require('knex')(config[process.env.NODE_ENV] || config['development']);
+
+    // On API startup, this will run knex migrate:latest to ensure that our DB is up to date.
+    const knexSetup = async () => {
+      if (process.env.NODE_ENV != 'development') {
+        console.log('>>> Production Environment Detected: Running `knex migrate:latest`.')
+        await database.migrate.latest('production')
+        console.log('>>> Migrations Complete.')
+      } if (process.env.NODE_ENV == 'development') {
+        console.log('>>> Development Environment Detected: Running `database migrate:latest`.')
+        await database.migrate.latest('development')
+        console.log('>>> Migrations Complete.')
+      }
+    }
+    knexSetup();
+
+    module.exports = database;
     ```
   * Create our Migration:
-    * ``
-    * Copy and paste the following into knexfile.js in your local root directory:
+    * `knex migrate:make examples`
+    * Copy and paste the following into db/migrations/xxxxxxx_examples.js:
     ```
+    exports.up = function(knex, Promise) {
+      return Promise.all([
+        knex.schema.createTable('examples', function(table) {
+          table.increments('exampleId').primary();
+          table.string('name').notNull();
+          table.string('username').notNull();
+          table.string('number').notNull();
+          table.timestamp('createdAt', { useTz: true }).defaultTo(knex.fn.now());
+          table.timestamp('updatedAt', { useTz: true }).defaultTo(knex.fn.now());
+        })
+      ])
+    };
+
+    exports.down = function(knex, Promise) {
+      return Promise.all([
+        knex.schema.dropTable('examples')
+      ])
+    };
     ```
   * Create our Seed data:
-    * ``
-    * Copy and paste the following into knexfile.js in your local root directory:
+    * `knex seed:make 001_Examples`
+    * Copy and paste the following into db/seeds/001_Examples.js:
     ```
+    exports.seed = function(knex, Promise) {
+      // Deletes ALL existing entries
+      return knex('examples').del()
+      .then(function () {
+        // Inserts seed entries
+        return knex('examples').insert([
+          {
+            name: 'Blaine Anderson',
+            username: 'Mordred',
+            number: 5
+          },
+          {
+            name: 'Kelli Anderson',
+            username: 'WickedWife',
+            number: 7
+          },
+          {
+            name: 'Chris Potter',
+            username: 'Steel_Rabbit',
+            number: 15
+          },
+          {
+            name: 'Justin Robare',
+            username: 'Lionell',
+            number: 3
+          },
+          {
+            name: 'Andy',
+            username: 'Percival',
+            number: 352
+          }
+        ]);
+      });
+    };
     ```
-  *
+  * Boot up locally and make sure the routes work via POSTman.
+    * If working, proceed to
     * ``
