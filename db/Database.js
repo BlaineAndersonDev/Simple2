@@ -1,38 +1,40 @@
 var pg = require('pg');
-pg.defaults.ssl = true;
 
 const config = require('../knexfile.js');
 const database = require('knex')(config[process.env.NODE_ENV] || config['development']);
 
-const knexMigrations = async (production) => {
-  console.log('>>> Running `knex migrate:latest`...')
-  if (production == true) {
+const knexMigrations = async (production_env) => {
+  console.log('>>> Running `knex migrate:latest`... <<<')
+  if (production_env == true) {
     await database.migrate.latest('production')
   } else {
     await database.migrate.latest('development')
   }
-  console.log('>>> Migration Complete.')
+  console.log('>>> Migrations Complete. <<<')
 };
 
-const knexSeeds = async (production) => {
-  console.log('>>> Running `knex seed:run`...')
-  if (production == true) {
+const knexSeeds = async (production_env) => {
+  console.log('>>> Running `knex seed:run`... <<<')
+  if (production_env == true) {
     await database.seed.run('production')
   } else {
     await database.seed.run('development')
   }
-  console.log('>>> Seed Complete.')
+  console.log('>>> Seed Complete. <<<')
 };
 
 // On API startup, this will run knex migrate:latest to ensure that our DB is up to date.
 const knexSetup = async () => {
   if (process.env.NODE_ENV != 'development') {
     console.log('>>> Production Environment Detected <<<')
+    pg.defaults.ssl = true;
+    await knexMigrations(true)
+    await knexSeeds(true)
   } else {
     console.log('>>> Development Environment Detected <<<')
+    await knexMigrations(false)
+    await knexSeeds(false)
   }
-  await knexMigrations()
-  await knexSeeds()
   console.log('>>> Knex Setup Completed <<<')
 }
 
