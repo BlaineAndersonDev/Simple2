@@ -7,10 +7,14 @@ const knexSetup = async () => {
     console.log('>>> Production Environment Detected: Running `knex migrate:latest`.')
     await database.migrate.latest('production')
     console.log('>>> Migrations Complete.')
-  } if (process.env.NODE_ENV == 'development') {
+    await database.seed.run('production')
+    console.log('>>> Seed Complete.')
+  } else if (process.env.NODE_ENV == 'development') {
     console.log('>>> Development Environment Detected: Running `database migrate:latest`.')
     await database.migrate.latest('development')
     console.log('>>> Migrations Complete.')
+    await database.seed.run('production')
+    console.log('>>> Seed Complete.')
   }
 }
 knexSetup();

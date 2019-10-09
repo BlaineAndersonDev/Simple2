@@ -331,7 +331,7 @@
 
 ## Setting up an actual Database:
   * Add our database dependencies:
-    * `yarn add knex moment pg`
+    * `yarn add knex moment pg dotenv`
   * Create our local database (Assumes you have PG installed locally):
     * `createdb simple`
   * Initiate Knex
