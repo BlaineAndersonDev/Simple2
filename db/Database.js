@@ -1,3 +1,6 @@
+var pg = require('pg');
+pg.defaults.ssl = true;
+
 const config = require('../knexfile.js');
 const database = require('knex')(config[process.env.NODE_ENV] || config['development']);
 

@@ -17,12 +17,13 @@ module.exports = {
 
   production: {
     client: 'pg',
-    connection: {
-      host : process.env.SIMPLE_DATABASE_HOST,
-      user : process.env.SIMPLE_DATABASE_USERNAME,
-      password : process.env.SIMPLE_DATABASE_PASSWORD,
-      database : process.env.SIMPLE_DATABASE_NAME
-    },
+    connection: process.env.SIMPLE_DATABASE_URL,
+    // connection: {
+    //   host : process.env.SIMPLE_DATABASE_HOST,
+    //   user : process.env.SIMPLE_DATABASE_USERNAME,
+    //   password : process.env.SIMPLE_DATABASE_PASSWORD,
+    //   database : process.env.SIMPLE_DATABASE_NAME
+    // },
     ssl: true,
     pool: {
       min: 2,
