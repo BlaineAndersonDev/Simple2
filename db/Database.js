@@ -13,9 +13,6 @@ const knexSetup = async () => {
     console.log('>>> Migrations Complete.')
   }
 }
-
-// This log just let's us know Knex started properly.
-// const knexSetup = async () => { console.log('Knex Database Connected...') };
 knexSetup();
 
 module.exports = database;
