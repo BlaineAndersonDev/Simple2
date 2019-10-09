@@ -8,7 +8,7 @@
 const express = require('express');
 const exampleObjectRouter = express.Router();
 const errorWrapper = require('./errorWrapper.js');
-const database = require('../db/database.js');
+const database = require('../db/Database.js');
 const moment = require('moment');
 
 // ======================================
