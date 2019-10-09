@@ -39,6 +39,7 @@ app.use(helmet())
 // =====================================
 // The app will use the required files below to generate API routes that allows the frontend to use HTTP calls (Axios) to retrieve data from the predetermined end points.
 app.use('/api/object/examples', require('./controllers/exampleObjectController.js'));
+app.use('/api/database/examples', require('./controllers/exampleDatabaseController.js'));
 
 // =====================================
 // Retrieve the local IP ===============
@@ -48,12 +49,12 @@ var os = require('os');
 var interfaces = os.networkInterfaces();
 var addresses = [];
 for (var k in interfaces) {
-    for (var k2 in interfaces[k]) {
-        var address = interfaces[k][k2];
-        if (address.family === 'IPv4' && !address.internal) {
-            addresses.push(address.address);
-        }
+  for (var k2 in interfaces[k]) {
+    var address = interfaces[k][k2];
+    if (address.family === 'IPv4' && !address.internal) {
+      addresses.push(address.address);
     }
+  }
 }
 
 // =====================================

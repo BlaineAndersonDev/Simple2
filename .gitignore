@@ -8,6 +8,10 @@ yarn.lock
 # SSH Keys
 simple
 simple.pub
+simple2
+simple2.pub
+docker001
+docker001.pub
 
 # Other
 .DS_Store

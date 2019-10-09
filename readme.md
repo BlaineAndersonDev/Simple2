@@ -300,6 +300,7 @@
     * [Optional] If you use `ssh root@<dropletIP>` and it returns "root@<dropletIP>: Permission denied (publickey)." then you have multiple SSH keys on your local system. To specify the key in the command line use:
       * `ssh -i <pathToSSHKey> <user/root>@<dropletIP>`
       * This will prompt you for your SSH passphrase. Enter that and you should have access.
+        * If the above does not work, I ended up having to destroy and recreate the droplet.
 
 ## Combining our API with our Digital Ocean Droplet (cloud server)
   * At this point, you'll need to add in the basics (NPM OR Yarn)
