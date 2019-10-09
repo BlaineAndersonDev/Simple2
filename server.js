@@ -28,9 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 // Tells the app to use files in the Client's 'build' folder when rendering static pages (production pages).
 app.use(express.static(path.join(__dirname, 'client/build')));
 // Logs all HTTP actions to the console (Only runs in 'development').
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan(':method :url {HTTP Status: :status} {Content Length: :res[content-length]} {Response Time: :response-time ms}'))
-}
+app.use(morgan(':method :url {HTTP Status: :status} {Content Length: :res[content-length]} {Response Time: :response-time ms}'))
 // Increase App API security by setting Headers using Helemt.
 app.use(helmet())
 
