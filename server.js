@@ -42,6 +42,12 @@ app.use('/api/object/examples', require('./controllers/exampleObjectController.j
 app.use('/api/database/examples', require('./controllers/exampleDatabaseController.js'));
 
 // =====================================
+// Database Setup ======================
+// =====================================
+// Activates our database detection and creation in db.js.
+const database = require('./db/Database.js');
+
+// =====================================
 // Retrieve the local IP ===============
 // =====================================
 var os = require('os');

@@ -330,15 +330,62 @@
   * Test the API using postman. And success!
 
 ## Setting up an actual Database:
-  *
+  * Add our database dependencies:
+    * `yarn add knex moment pg`
+  * Create our local database (Assumes you have PG installed locally):
+    * `createdb simple`
+  * Initiate Knex
+    * `knex init`
+    * Copy and paste the following into knexfile.js in your local root directory:
+    ```
+    // Database, Migration and Seed Setup
+    module.exports = {
+
+      development: {
+        client: 'pg',
+        connection: {
+          database: 'simple' // Replace this with your DB name.
+        },
+        migrations: {
+            directory: __dirname + '/db/migrations',
+        },
+        seeds: {
+            directory: __dirname + '/db/seeds',
+        }
+      },
+
+      production: {
+        client: 'pg',
+        connection: process.env.DATABASE_URL,
+        ssl: true,
+        pool: {
+          min: 2,
+          max: 10
+        },
+        migrations: {
+            directory: __dirname + '/db/migrations',
+        },
+        seeds: {
+            directory: __dirname + '/db/seeds/production',
+        }
+      }
+
+    };
+    ```
+  * Add our database "activation" into our server.js
     * ``
-  *
+    * Copy and paste the following into knexfile.js in your local root directory:
+    ```
+    ```
+  * Create our Migration:
     * ``
-  *
+    * Copy and paste the following into knexfile.js in your local root directory:
+    ```
+    ```
+  * Create our Seed data:
     * ``
-  *
-    * ``
-  *
-    * ``
+    * Copy and paste the following into knexfile.js in your local root directory:
+    ```
+    ```
   *
     * ``

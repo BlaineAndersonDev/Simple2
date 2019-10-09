@@ -8,29 +8,25 @@
 const express = require('express');
 const exampleObjectRouter = express.Router();
 const errorWrapper = require('./errorWrapper.js');
-
-// ======================================
-// The object to manipulate in place of read/write to a database.
-const helloWorld = [
-  {id: 1, message: 'Hello World!'},
-  {id: 2, message: 'This is pretty cool.'},
-  {id: 3, message: 'You got this working!'},
-  {id: 4, message: 'Amazing job!'}
-]
+const database = require('../db/database.js');
+const moment = require('moment');
 
 // ======================================
 // Get all Examples.
 // ROUTE: GET `/api/examples/`
 exampleObjectRouter.get('/', errorWrapper(async (req, res, next) => {
-  // "Database" query.
-  const readResults = helloWorld
+  // Knex database query.
+  const readResults = await database('examples')
+    .select('*')
+    .orderBy('exampleId', 'asc')
+    .catch((err) => { throw new Error(err) });
 
-  // Return HTTP status and JSON results object.
-  return res.status(200).json({
-    success: true,
-    message: 'API returned list of all Examples',
-    results: readResults
-  });
+    // Return HTTP status and JSON results object.
+    return res.status(200).json({
+      success: true,
+      message: 'API returned list of all Examples',
+      results: readResults
+    });
 }));
 
 // ======================================
