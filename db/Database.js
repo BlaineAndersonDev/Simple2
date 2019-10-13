@@ -6,9 +6,11 @@ const database = require('knex')(config[process.env.NODE_ENV] || config['develop
 const knexMigrations = async (production_env) => {
   console.log('>>> Running `knex migrate:latest`... <<<')
   if (production_env == true) {
-    await database.migrate.latest('production')
+    const migrationResults = await database.migrate.latest('production')
+    console.log(migrationResults)
   } else {
-    await database.migrate.latest('development')
+    const migrationResults = await database.migrate.latest('development')
+    console.log(migrationResults)
   }
   console.log('>>> Migrations Complete. <<<')
 };
